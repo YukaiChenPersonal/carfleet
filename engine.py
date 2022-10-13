@@ -1,10 +1,10 @@
 class capulet_engine:
-    def __init__(self, current_mileage, last_service_mileage):
-        self.current_mileage = current_mileage
-        self.last_service_mileage = last_service_mileage
+    def __init__(self, cur_mileage, last_serv_mileage):
+        self.cur_mileage = cur_mileage
+        self.last_serv_mileage = last_serv_mileage
 
     def need_serv(self):
-        return self.current_mileage - self.last_service_mileage > 30000
+        return self.cur_mileage - self.last_serv_mileage > 30000
 
 class sternman_engine:
     def __init__(self, warning_on):
@@ -17,9 +17,9 @@ class sternman_engine:
             return False
 
 class willoughby_engine:
-    def __init__(self, current_mileage, last_service_mileage):
-        self.current_mileage = current_mileage
-        self.last_service_mileage = last_service_mileage
+    def __init__(self, cur_mileage, last_serv_mileage):
+        self.cur_mileage = cur_mileage
+        self.last_serv_mileage = last_serv_mileage
 
     def need_serv(self):
-        return self.current_mileage - self.last_service_mileage > 60000
+        return self.cur_mileage - self.last_serv_mileage > 60000
