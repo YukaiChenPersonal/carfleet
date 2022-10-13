@@ -7,11 +7,11 @@ class capulet_engine:
         return self.current_mileage - self.last_service_mileage > 30000
 
 class sternman_engine:
-    def __init__(self, warning_light_is_on):
-        self.warning_light_is_on = warning_light_is_on
+    def __init__(self, warning_on):
+        self.warning_on = warning_on
 
     def need_serv(self):
-        if self.warning_light_is_on:
+        if self.warning_on:
             return True
         else:
             return False
