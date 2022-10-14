@@ -22,7 +22,7 @@ class spindler_battery(Battery):
         self.last_serv_date = last_serv_date
 
     def need_serv(self):
-        date_should_service = add_years(self.last_serv_date, 2)
+        date_should_service = add_years(self.last_serv_date, 3)
         if date_should_service < self.cur_date:
             return True
         else:

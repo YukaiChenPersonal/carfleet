@@ -1,5 +1,6 @@
 import unittest
-from datetime import date, datetime
+from datetime import datetime
+import numpy as np
 
 from engine import capulet_engine
 from engine import sternman_engine
@@ -7,6 +8,9 @@ from engine import willoughby_engine
 
 from battery import spindler_battery
 from battery import nubbin_battery
+
+from tire import carrigan_tire
+from tire import octoprime_tire
 
 
 class TestCapulet(unittest.TestCase):
@@ -57,14 +61,14 @@ class TestWilloughby(unittest.TestCase):
 class TestSpindler(unittest.TestCase):
     def test_battery_should_be_serviced(self):
         today = datetime.today().date()
-        last_serv_date = today.replace(year=today.year -3)
+        last_serv_date = today.replace(year=today.year -4)
 
         battery = spindler_battery(today, last_serv_date)
         self.assertTrue((battery.need_serv()), "spindler, expect yes service")
 
     def test_battery_should_not_be_Serviced(self):
         today = datetime.today().date()
-        last_serv_date = today.replace(year=today.year -1)
+        last_serv_date = today.replace(year=today.year -2)
 
         battery = spindler_battery(today, last_serv_date)
         self.assertFalse(battery.need_serv(), "spindler, expect no service")
@@ -84,6 +88,34 @@ class TestNubbin(unittest.TestCase):
 
         battery = nubbin_battery(today, last_serv_date)
         self.assertFalse(battery.need_serv(), "nubbin, expect no service")
+
+
+class TestCarrigan(unittest.TestCase):
+    def test_tire_should_be_serviced(self):
+        test_arr = np.array([0.9, 0.9, 0.9, 0.5])
+
+        tire = carrigan_tire(test_arr)
+        self.assertTrue(tire.need_serv(), "carrigan, expect yes service")
+
+    def test_tire_should_not_be_serviced(self):
+        test_arr = np.array([0.1, 0.1, 0.1, 0.1])
+
+        tire = carrigan_tire(test_arr)
+        self.assertFalse(tire.need_serv(), "carrigan, expect no service")
+
+
+class TestOctoprime(unittest.TestCase):
+    def test_tire_should_be_serviced(self):
+        test_arr = np.array([0.9, 0.9, 0.9, 0.5])
+
+        tire = octoprime_tire(test_arr)
+        self.assertTrue(tire.need_serv(), "octoprime, expect yes service")
+
+    def test_tire_should_not_be_serviced(self):
+        test_arr = np.array([0.1, 0.1, 0.1, 0.1])
+
+        tire = octoprime_tire(test_arr)
+        self.assertFalse(tire.need_serv(), "octoprime, expect no service")
 
 
 if __name__ == '__main__':
