@@ -1,8 +1,10 @@
 from abc import ABC
 
+
 class engine(ABC):
     def need_serv(self):
         pass
+
 
 class capulet_engine(engine):
     def __init__(self, cur_mileage, last_serv_mileage):
@@ -11,6 +13,7 @@ class capulet_engine(engine):
 
     def need_serv(self):
         return self.cur_mileage - self.last_serv_mileage > 30000
+
 
 class sternman_engine(engine):
     def __init__(self, warning_on):
@@ -21,6 +24,7 @@ class sternman_engine(engine):
             return True
         else:
             return False
+
 
 class willoughby_engine(engine):
     def __init__(self, cur_mileage, last_serv_mileage):
